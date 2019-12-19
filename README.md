@@ -2,6 +2,10 @@
 
 Bypass tethering caps or throttling on cell phone unlimited data plans. Potentially cancel your internet and route your whole home though your unlimited data plan.
 
+Inspired from [XDA](https://forum.xda-developers.com/) forum threads.
+[Working Options for Unlimited Tetherting, Hotspot, Carrier Check Bypass Methods](https://forum.xda-developers.com/showthread.php?t=3825144)
+[Unlimited WiFi Tethering](https://forum.xda-developers.com/showthread.php?t=2914057)
+
 ## Requirements
 
 * **Unlimited data plan**
