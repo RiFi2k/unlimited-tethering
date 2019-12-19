@@ -26,7 +26,7 @@ I have personally used anywhere from 80-150GB of data with this method consistan
 
 2) Hotspot your phone.
 
-3) run `ifconfig` inside Termux to get your current tethering local IP. It will be the only 192.x.x.x spit out and generally for andriod will be ending in 192.x.x.42. Save this.
+3) Run `ifconfig` inside Termux to get your current tethering local IP. It will be the only 192.x.x.x spit out and generally for andriod will be ending in 192.x.x.42. Save this.
 
 4) Run `sshd -dD` inside Termux which starts an openssh server in debug mode to audit traffic. Your looking to see something like this as output from the above command.
 
