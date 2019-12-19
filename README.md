@@ -24,11 +24,18 @@ I have personally used anywhere from 80-150GB of data with this method consistan
 
 3) run `ifconfig` inside Termux to get your current tethering local IP. It will be the only 192.x.x.x spit out and generally for andriod will be ending in 192.x.x.42. Save this.
 
-4) Run `sshd -dD` inside Termux which starts an openssh server in debug mode to audit traffic.
+4) Run `sshd -dD` inside Termux which starts an openssh server in debug mode to audit traffic. Your looking to see something like this as output from the above command.
+
+```
+debug1: Bind to port 8022 on ::.
+Server listening on :: port 8022.
+debug1: Bind to port 8022 on 0.0.0.0.
+Server listening on 0.0.0.0 port 8022.
+```
 
 5) Now pop onto a PC and connect it to your hotspot.
 
-6) Now SSH tunnel all the traffic from the device back through the openssh server your running on the Termux app. Now that you are on the same local network you can SSH tunnel into that IP address you saved earlier.
+6) Now SSH tunnel all the traffic from the device back through the openssh server your running on the Termux app. Now that you are on the same local network you can SSH tunnel into our saved IP address and port from earlier `192.x.x.42:8022` or similar.
 
 I use [sshuttle](https://github.com/sshuttle/sshuttle) which already handles most of the [gotchas with tcp over tcp etc](https://sshuttle.readthedocs.io/en/stable/how-it-works.html). and which also has a solution for [Windows](https://sshuttle.readthedocs.io/en/stable/windows.html) and linux.
 
