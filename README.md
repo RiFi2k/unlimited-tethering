@@ -39,9 +39,33 @@ Server listening on 0.0.0.0 port 8022.
 
 5) Now pop onto a PC and connect it to your hotspot.
 
-6) Now SSH tunnel all the traffic from the device back through the openssh server your running on the Termux app. Now that you are on the same local network you can SSH tunnel into our saved IP address and port from earlier `192.x.x.42:8022` or similar.
+6) Now SSH tunnel all the traffic from the device back through the openssh server your running on the Termux app. Now that you are on the same local network you can SSH tunnel into our saved IP address and port from earlier `192.x.43.x:8022` or similar.
 
-I use [sshuttle](https://github.com/sshuttle/sshuttle) which already handles most of the [gotchas with tcp over tcp etc](https://sshuttle.readthedocs.io/en/stable/how-it-works.html). and which also has a solution for [Windows](https://sshuttle.readthedocs.io/en/stable/windows.html) and linux.
+You can use ssh which would look something like this.
+
+```bash
+TERMUX_USER="u0_a249"
+TERMUX_IP="192.x.43.x"
+TERMUX_PORT="8022"
+LOCAL_SOCKS_PORT="8123"
+ssh -D $LOCAL_SOCKS_PORT -fqgN $TERMUX_USER@$TERMUX_IP -p $TERMUX_PORT
+```
+
+TERMUX_USER would be your username on the Termux app.
+TERMUX_IP would be the IP you got from `ifconfig` in Termux.
+TERMUX_PORT would be the port `sshd` is using in Termux.
+LOCAL_SOCKS_PORT would be the port you want to use for your local proxy.
+
+So then once you run the above ssh command you need to configure a system wide or application specific Socks Proxy which would be proxying all traffic to `127.0.0.1` for the Socks Host and whatever `LOCAL_SOCKS_PORT` is from above for the Socks Port.
+
+I use [sshuttle](https://github.com/sshuttle/sshuttle) which already handles most of the [gotchas with tcp over tcp etc](https://sshuttle.readthedocs.io/en/stable/how-it-works.html). and which also has a solution for [Windows](https://sshuttle.readthedocs.io/en/stable/windows.html) and linux. Also sshuttle generally handles setting up the Socks Proxy for you. A command for sshuttle might look like this.
+
+```bash
+TERMUX_USER="u0_a249"
+TERMUX_IP="192.x.43.x"
+TERMUX_PORT="8022"
+sshuttle -r $TERMUX_USER@$TERMUX_IP:$TERMUX_PORT 0.0.0.0/0 -l 0.0.0.0:0
+```
 
 As long as you make sure all your traffic passes through the tunnel it 100 percent shows that all your internet is being used by Termux app not your hotspot app so you need no other spoofing of hops or anything because to your phone and carrier you are just using a bunch of data in termux, you do it right you will never be throttled.
 
