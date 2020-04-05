@@ -67,12 +67,31 @@ So then once you run the above ssh command you need to configure a system wide o
 
 I use [sshuttle](https://github.com/sshuttle/sshuttle) which already handles most of the [gotchas with tcp over tcp etc](https://sshuttle.readthedocs.io/en/stable/how-it-works.html). and which also has a solution for [Windows](https://sshuttle.readthedocs.io/en/stable/windows.html) and linux. Also sshuttle generally handles setting up the Socks Proxy for you. A command for sshuttle might look like this.
 
+## Linux
+
 ```bash
 TERMUX_USER="u0_a249"
 TERMUX_IP="192.x.43.x"
 TERMUX_PORT="8022"
 sshuttle -r $TERMUX_USER@$TERMUX_IP:$TERMUX_PORT 0.0.0.0/0 -l 0.0.0.0:0
 ```
+
+## Windows
+
+On Windows I would download [Virtualbox](https://www.virtualbox.org/). You can verify the sha256 of the files via PowerShell with `Get-FileHash C:\path\to\file.exe`. Also you might want to use [git bash](https://medium.com/@botdotcom/learn-how-to-install-and-use-git-on-windows-9deecbd6f126) instead. Then you want to make sure you launch a linux VM in [bridged mode](https://www.linuxbabe.com/virtualbox/a-pretty-good-introduction-to-virtualbox-bridged-networking-mode).
+
+Then run sshuttle inside the VM following the directions here for [sshuttle in a VM](https://sshuttle.readthedocs.io/en/stable/windows.html).
+
+Inside the VM
+```
+sshuttle -l 0.0.0.0 -x 10.0.0.0/8 -x 192.168.0.0/16 0/0
+```
+
+Back on your Windows machine, assuming your VM has the IP `192.168.1.200` on the bridged network.
+```
+route add 0.0.0.0 mask 0.0.0.0 192.168.1.200
+```
+That should route traffic through the VM and the tunnel.
 
 As long as you make sure all your traffic passes through the tunnel it 100 percent shows that all your internet is being used by Termux app not your hotspot app so you need no other spoofing of hops or anything because to your phone and carrier you are just using a bunch of data in termux, you do it right you will never be throttled.
 
