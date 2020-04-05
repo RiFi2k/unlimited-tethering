@@ -50,6 +50,8 @@ Server listening on 0.0.0.0 port 8022.
 
 You can use ssh which would look something like this.
 
+If you want to use OpenSSH on Windows my recommendation would be Chocolatey package manager. https://gitlab.com/DarwinJS/ChocoPackages/tree/master/openssh
+
 ```bash
 TERMUX_USER="u0_a249"
 TERMUX_IP="192.x.43.x"
