@@ -20,7 +20,14 @@ I have personally used anywhere from 80-150GB of data with this method consistan
 
 ## Overview
 
-1) Download [Termux](https://termux.com/) app and [install openssh](https://wiki.termux.com/wiki/Remote_Access) on it.
+1) Download [Termux](https://termux.com/) app, [install openssh](https://wiki.termux.com/wiki/Remote_Access) on it, make sure you have python2 as well and simlink the `python2` command to `python`.
+
+```
+pkg install python2
+py2_path=$(which python2)
+py_path=${py2_path%/*}/python
+ln -s "$py_path" "$py2_path"
+```
 
 2) Configure authentication as explained [here](https://wiki.termux.com/wiki/Remote_Access) for SSH. If you don't already have a keypair it explains how to set up an ssh keypair and use it to authenticate to your phone from a PC. I personally used my existing SSH public key and made a folder / file `~/.ssh/authorized_keys` on Termux and dropped it in there with something like `curl "https://github.com/rifi2k.keys" > ~/.ssh/authorized_keys` if you already have your public keys on github here.
 
