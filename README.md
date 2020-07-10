@@ -26,7 +26,7 @@ I have personally used anywhere from 80-150GB of data with this method consistan
 pkg install python2
 py2_path=$(which python2)
 py_path=${py2_path%/*}/python
-ln -s "$py_path" "$py2_path"
+ln -s "$py2_path" "$py_path"
 ```
 
 2) Configure authentication as explained [here](https://wiki.termux.com/wiki/Remote_Access) for SSH. If you don't already have a keypair it explains how to set up an ssh keypair and use it to authenticate to your phone from a PC. I personally used my existing SSH public key and made a folder / file `~/.ssh/authorized_keys` on Termux and dropped it in there with something like `curl "https://github.com/rifi2k.keys" > ~/.ssh/authorized_keys` if you already have your public keys on github here.
