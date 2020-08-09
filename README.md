@@ -10,7 +10,7 @@ Inspired from [XDA](https://forum.xda-developers.com/) forum threads.
 
 * **Unlimited data plan**
 * **Ability to hotspot your phone**
-* **Computor or Router**
+* **Computer or Router**
 
 This is not a carrier specific method, I use Verizon but this should generally work with any carrier. It also doesn't matter if they throttle or cap you at 15GB or something, that is what we are about to work around.
 
