@@ -75,7 +75,7 @@ I use [sshuttle](https://github.com/sshuttle/sshuttle) which already handles mos
 TERMUX_USER="u0_a249"
 TERMUX_IP="192.x.43.x"
 TERMUX_PORT="8022"
-sshuttle -r $TERMUX_USER@$TERMUX_IP:$TERMUX_PORT 0.0.0.0/0 -l 0.0.0.0:0
+sshuttle -r $TERMUX_USER@$TERMUX_IP:$TERMUX_PORT 0/0 --exclude $hostname 0/0
 ```
 
 ## Windows
